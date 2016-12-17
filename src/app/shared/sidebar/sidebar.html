@@ -1,0 +1,56 @@
+<button class="btn btn-default" id="toggle-sidebar" type="button" (click)="eventCalled()">&#9776;</button>
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+	<ul class="list-group">
+	
+		<div class="nested-menu">
+			<a class="list-group-item" (click)="addExpandClass('mass-update-pages')"> <span>Mass Update</span>
+			</a>
+			<li class="nested" [ngClass]="{'expand' : showMenu === 'mass-update-pages' }">
+				<ul class="submenu">
+					<li><a [routerLink]="['mass-update-new-request']" [routerLinkActive]="['router-link-active']"> <i class="fa fa-plus"></i> &nbsp;New Request
+					</a></li>
+					<li><a [routerLink]="['mass-update-report']" [routerLinkActive]="['router-link-active']"> <i class="fa fa-fw fa-table"></i> &nbsp;Report
+					</a></li>
+
+
+				</ul>
+			</li>
+		</div>
+
+
+
+		<a routerLink="/dashboard/home" [routerLinkActive]="['router-link-active']" class="list-group-item"> <i class="fa fa-fw fa-dashboard"></i> Dashboard
+		</a>
+		<a [routerLink]="['chart']" [routerLinkActive]="['router-link-active']" class="list-group-item"> <i class="fa fa-fw fa-bar-chart-o"></i> Charts
+		</a>
+		<a [routerLink]="['tables']" [routerLinkActive]="['router-link-active']" class="list-group-item"> <i class="fa fa-fw fa-table"></i> Tables
+		</a>
+		<a [routerLink]="['forms']" [routerLinkActive]="['router-link-active']" class="list-group-item"> <i class="fa fa-fw fa-edit"></i> Forms
+		</a>
+		<a [routerLink]="['element']" [routerLinkActive]="['router-link-active']" class="list-group-item"> <i class="fa fa-fw fa-desktop"></i> Bootstrap Elements
+		</a>
+		<a [routerLink]="['grid']" [routerLinkActive]="['router-link-active']" class="list-group-item"> <i class="fa fa-fw fa-wrench"></i> Bootstrap Grid
+		</a>
+		<a [routerLink]="['components']" [routerLinkActive]="['router-link-active']" class="list-group-item"> <i class="fa fa-th-list"></i> &nbsp;Component
+		</a>
+		<a [routerLink]="['blankpage']" [routerLinkActive]="['router-link-active']" class="list-group-item"> <i class="fa fa-file-o"></i> &nbsp;BlankPage
+		</a>
+
+
+
+
+		<div class="nested-menu">
+			<a class="list-group-item" (click)="addExpandClass('pages')"> <span><i class="fa fa-plus"></i> &nbsp; Menu</span>
+			</a>
+			<li class="nested" [ngClass]="{'expand' : showMenu === 'pages' }">
+				<ul class="submenu">
+					<li><a href=""><span>Submenu</span></a></li>
+					<li><a href=""><span>Submenu</span></a></li>
+				</ul>
+			</li>
+		</div>
+
+
+
+	</ul>
+</nav>
