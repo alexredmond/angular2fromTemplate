@@ -13,36 +13,40 @@
 			<form role="form">
 
 				<div class="form-group">
-					<label>Mass Update Type</label> <select class="form-control">
-
+					<label>Mass Update Type</label> <select
+						[ngModel]="selectedMassUpdateType"
+						(ngModelChange)="onChangemassUpdateType($event)"
+						name="massUpdateTypeElement" class="form-control">
 						<option value="">Select One</option>
-						<option *ngFor="let massUpdateType of massUpdateTypes" value="{{massUpdateType.code}}">
-							{{massUpdateType.description}}</option>
-					</select>
+						<option [ngValue]="i" *ngFor="let i of massUpdateTypes">{{i.description}}</option>
+					</select> {{selectedMassUpdateType | json}}
 				</div>
 
+				<br />
+				<div *ngIf="selectedMassUpdateType">
+					<h2>{{selectedMassUpdateType.code}} aaaaaaaaaaaaa!</h2>
+				
+				
 
+					<fieldset class="form-group">
+						<label>SDT / Project reference number</label> 
+						
+						<input  [(ngModel)]="selectedMassUpdateType.code" type="text" name="refNumber" 	class="form-control" placeholder="sdt12345" />
+						
+					</fieldset>
+	
+					<fieldset class="form-group">
+						<label>Approver</label> <input class="form-control"
+							placeholder="As configured" />
+					</fieldset>
+	
+	
+					<fieldset class="form-group">
+						<label>Comment</label>
+						<textarea class="form-control" rows="3"></textarea>
+					</fieldset>
 
-
-
-				<fieldset class="form-group">
-					<label>SDT / Project reference number</label> <input
-						class="form-control" placeholder="sdt12345" />
-				</fieldset>
-
-				<fieldset class="form-group">
-					<label>Approver</label> <input class="form-control"
-						placeholder="As configured" />
-				</fieldset>
-
-
-				<fieldset class="form-group">
-					<label>Comment</label>
-					<textarea class="form-control" rows="3"></textarea>
-				</fieldset>
-
-
-
+</div>
 
 
 

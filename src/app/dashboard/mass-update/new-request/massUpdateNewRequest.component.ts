@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Lookup } from '../../../shared/lookup/lookup';
 
@@ -19,6 +19,13 @@ const LOOKUPS: Lookup[] = [
 export class MassUpdateNewRequestComponent {
   
     massUpdateTypes = LOOKUPS;
+  selectedMassUpdateType: Lookup;
   
   
+  
+   onChangemassUpdateType(newObj) {
+    console.log(newObj);
+    this.selectedMassUpdateType = newObj;
+    // ... do other stuff here ...
+  }
 }

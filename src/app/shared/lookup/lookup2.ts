@@ -1,4 +1,4 @@
-export class Lookup {
+export class Lookup2 {
   id: number;
   code: string;
   orderSeq: number;
