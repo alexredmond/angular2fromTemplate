@@ -2,63 +2,59 @@
 	<!-- Page Heading -->
 	<div class="row">
 		<div class="col-lg-12">
-			<h2 class="page-header">Mass Update New Request</h2>
+			<h2 class="page-header">Mass Update New Request </h2>
 		</div>
 	</div>
-	<!-- /.row -->
 
-	<div class="row">
+
+<div class="row">
 		<div class="col-lg-9">
 
-			<form role="form">
+			<form (ngSubmit)="onSubmit()" #massUpdateNewRequestForm="ngForm">
 
 				<div class="form-group">
-					<label>Mass Update Type</label> <select
-						[ngModel]="selectedMassUpdateType"
-						(ngModelChange)="onChangemassUpdateType($event)"
-						name="massUpdateTypeElement" class="form-control">
+					<label for ="changeTypeCodes">Mass Update Type</label> 
+					<select [(ngModel)]="model.changeTypeCode" (ngModelChange)="onChangemassUpdateType($event)" name="changeTypeCode" class="form-control" required>
 						<option value="">Select One</option>
-						<option [ngValue]="i" *ngFor="let i of massUpdateTypes">{{i.description}}</option>
+						<option [ngValue]="massUpdateTypeElement.code" *ngFor="let massUpdateTypeElement of massUpdateTypes">{{massUpdateTypeElement.description}}</option>
 					</select> {{selectedMassUpdateType | json}}
 				</div>
 
-				<br />
-				<div *ngIf="selectedMassUpdateType">
-					<h2>{{selectedMassUpdateType.code}} aaaaaaaaaaaaa!</h2>
-				
-				
 
-					<fieldset class="form-group">
-						<label>SDT / Project reference number</label> 
-						
-						<input  [(ngModel)]="selectedMassUpdateType.code" type="text" name="refNumber" 	class="form-control" placeholder="sdt12345" />
-						
-					</fieldset>
-	
-					<fieldset class="form-group">
-						<label>Approver</label> <input class="form-control"
-							placeholder="As configured" />
-					</fieldset>
-	
-	
-					<fieldset class="form-group">
-						<label>Comment</label>
-						<textarea class="form-control" rows="3"></textarea>
-					</fieldset>
 
-</div>
+				<fieldset class="form-group">
+					<label for="requestorUsername">Requestor Username</label> 
+					<input type="text" class="form-control" name="requestorUsername" [(ngModel)]="model.requestorUsername"  placeholder="current username" disabled required />
+				</fieldset>
+				<fieldset class="form-group">
+					<label for="referenceNumber">SDT / Project reference number</label> 
+					<input type="text" class="form-control" name="referenceNumber" [(ngModel)]="model.referenceNumber" placeholder="sdt12345" />
+				</fieldset>
+				<fieldset class="form-group">
+					<label for="approverUsernames">Approver Usernames</label> 
+					<input type="text" class="form-control" name="approverUsernames" [(ngModel)]="model.approverUsernames" placeholder="coma separated usernames" />
+				</fieldset>
+
+				<fieldset class="form-group">
+					<label for="notificationEmails">Notification Emails</label> 
+					<input type="text" class="form-control" name="notificationEmails" [(ngModel)]="model.notificationEmails" placeholder="coma separated email addresses" />
+				</fieldset>
+			
 
 
 
-				<button type="submit" class="btn btn-secondary">Submit
-					Button</button>
+				<button type="submit" class="btn btn-secondary">Submit Button</button>
 				<button type="reset" class="btn btn-secondary">Reset Button</button>
+
+
+
+
+
 
 			</form>
 
 		</div>
+</div>
 
-	</div>
-	<!-- /.row -->
 
 </div>
