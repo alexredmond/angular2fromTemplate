@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { Lookup } from '../../../shared/lookup/lookup';
 import { MassUpdateNewRequest } from './MassUpdateNewRequest';
+import { LookupService } from '../../../shared/lookup/lookup.service';
 
 const LOOKUPS: Lookup[] = [
   { code: 'BIASSOCA', description: 'BusinessInfo Association Add' },
@@ -24,20 +25,24 @@ export class MassUpdateNewRequestComponent implements OnInit {
   massUpdateTypes = LOOKUPS;
   selectedMassUpdateType: Lookup;
 
-  constructor() {
 
+  constructor(private _lookupService: LookupService) {
 
   }
 
-  onChangemassUpdateType(newObj) {
-    console.log(newObj);
-    this.selectedMassUpdateType = newObj;
+
+
+
+  onChangemassUpdateType(massUpdateTypeCode) {
+    console.log(massUpdateTypeCode);
+
+    this.selectedMassUpdateType = this._lookupService.getLookupByCode(this.massUpdateTypes, massUpdateTypeCode);
 
   }
 
 
   ngOnInit() {
-    this.model = new MassUpdateNewRequest('','myUserName');
+    this.model = new MassUpdateNewRequest('', 'myUserName');
   }
 
 
