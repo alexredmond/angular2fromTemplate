@@ -33,10 +33,30 @@ export class LookupService {
   //        return Observable.throw(error.json().error || 'Server error');
   //    }
   getLookupByCode(lookupList: Lookup[], code: string): Lookup {
-//     angular.forEach(lookupList, function(value, key){
-//         
-//           console.log(value +"username is thomas"+key);
-//         });
-    return lookupList[2];
+    if (lookupList) {
+      for (let lookupEntry of lookupList) {
+        if (lookupEntry.code === code) {
+          return lookupEntry;
+        }
+      }
+    }
+    return this.getEmptyLookup();
+  }
+
+  getLookupAuxColValue(lookup: Lookup, auxCol: string): string {
+    if (lookup) {
+      if (lookup.auxCols) {
+        for (let auxColName of lookup.auxCols) {
+          if (auxColName.name === auxCol) {
+            return auxColName.value;
+          }
+        }
+      }
+    }
+    return '';
+  }
+
+  getEmptyLookup(): Lookup {
+    return new Lookup(0, '', 'Select one');
   }
 }

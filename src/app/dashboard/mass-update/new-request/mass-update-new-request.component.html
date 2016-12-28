@@ -31,6 +31,13 @@
 					<input type="text" class="form-control" name="referenceNumber" [(ngModel)]="model.referenceNumber" placeholder="sdt12345" />
 				</fieldset>
 				<fieldset class="form-group">
+					<label for ="midGroup">Mid Group / Processing Centre</label> 
+					<select [(ngModel)]="model.midGroup"  name="midGroup" class="form-control" required>
+						<option [ngValue]="midGroupOption.code" *ngFor="let midGroupOption of midGroupOptions" >{{midGroupOption.description}}</option>
+					</select> 
+				</fieldset>
+				
+				<fieldset class="form-group">
 					<label for="approverUsernames">Approver Usernames</label> 
 					<input type="text" class="form-control" name="approverUsernames" [(ngModel)]="model.approverUsernames" placeholder="coma separated usernames" />
 				</fieldset>
@@ -39,7 +46,6 @@
 					<label for="notificationEmails">Notification Emails</label> 
 					<input type="text" class="form-control" name="notificationEmails" [(ngModel)]="model.notificationEmails" placeholder="coma separated email addresses" />
 				</fieldset>
-			
 
 
 
