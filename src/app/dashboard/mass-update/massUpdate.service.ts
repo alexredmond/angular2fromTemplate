@@ -8,12 +8,16 @@ import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 
 import { MassUpdateReportSearchRequest } from './report-search/massUpdateReportSearchRequest';
+import { Config } from "../../resources/config";
 
 @Injectable()
 export class MassUpdateService {
   private _serverUrl = 'http://pccwd-987f302:9080/MerchantServices/rest/massUpdate/search';
 
-  constructor(private _http: Http) { } 
+  constructor(private _http: Http, private _config: Config) {
+
+
+  }
 
   //    getProducts(): Observable<IProduct[]> {
   //        return this._http.get(this._productUrl)
@@ -28,31 +32,39 @@ export class MassUpdateService {
   //    }
   //
 
- massUpdateSearchRequest (massUpdateReportSearchRequest: MassUpdateReportSearchRequest): Observable<MassUpdateReportSearchRequest> {
+  massUpdateSearchRequest(massUpdateReportSearchRequest: MassUpdateReportSearchRequest): Observable<MassUpdateReportSearchRequest> {
+
+
+    let url = this._config.get('himmsServer');
+    console.log('himmsServerrrrrrrrrrrrrrrrrrrr ');
+
+
     let headers = new Headers();
-     headers.append('Content-Type', 'application/json' ); 
-     headers.append('Access-Control-Allow-Origin', '*' ); 
-     headers.append('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS' ); 
-     headers.append('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token' ); 
-    
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*');
+    headers.append('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    headers.append('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token');
+
 
 
 
     let options = new RequestOptions({ headers: headers });
     let body = JSON.stringify(massUpdateReportSearchRequest);
+     console.log('bodyyyyyyyyyy ' + body);
+    
 
     return this._http.post(this._serverUrl, body, options)
-                    .map((res: Response) => res.json())
-                    .catch(this.handleError);
+      .map((res: Response) => res.json())
+      .catch(this.handleError);
   }
 
 
-      private handleError(error: Response) {
-          // in a real world app, we may send the server to some remote logging infrastructure
-          // instead of just logging it to the console
-          console.error(error);
-          return Observable.throw(error.json().error || 'Server error');
-      }
+  private handleError(error: Response) {
+    // in a real world app, we may send the server to some remote logging infrastructure
+    // instead of just logging it to the console
+    console.error(error);
+    return Observable.throw(error.json().error || 'Server error');
+  }
 
 
 

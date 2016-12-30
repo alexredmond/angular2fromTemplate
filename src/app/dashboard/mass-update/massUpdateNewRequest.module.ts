@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormControl, FormGroup } from '@angular/forms';
 import { LookupService } from '../../shared/lookup/lookup.service'; 
 import { MassUpdateService } from './massUpdate.service';  
+import { Config } from '../../resources/config';
+
 
 
 import { MassUpdateNewRequestComponent } from './new-request/massUpdateNewRequest.component';
@@ -13,7 +15,7 @@ import { MassUpdateReportSearchRequestComponent } from './report-search/massUpda
   imports: [    BrowserModule, FormsModule, ReactiveFormsModule],
   declarations: [MassUpdateNewRequestComponent, MassUpdateReportSearchRequestComponent],
   exports: [MassUpdateNewRequestComponent, MassUpdateReportSearchRequestComponent],
-  providers: [LookupService, MassUpdateService],
+  providers: [LookupService, MassUpdateService, Config],
 })
 
 export class MassUpdateNewRequestModule { }
