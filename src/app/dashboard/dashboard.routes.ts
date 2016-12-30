@@ -9,7 +9,7 @@ import { GridRoutes } from './grid/grid.routes';
 import { BSComponentRoutes } from './bs-component/bsComponent.routes';
 import { BSElementRoutes } from './bs-element/bsElement.routes';
 
-import { MassUpdateNewRequestRoutes } from './mass-update/new-request/massUpdateNewRequest.routes'; 
+import { MassUpdateNewRequestRoutes } from './mass-update/massUpdateNewRequest.routes';
 
 import { DashboardComponent } from './index';
 

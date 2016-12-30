@@ -12,32 +12,31 @@ import { GridModule } from './grid/grid.module';
 import { BSComponentModule } from './bs-component/bsComponent.module';
 import { BSElementModule } from './bs-element/bsElement.module';
 
-import { MassUpdateNewRequestModule } from './mass-update/new-request/massUpdateNewRequest.module';
+import { MassUpdateNewRequestModule } from './mass-update/massUpdateNewRequest.module';
 
 import { DashboardComponent } from './dashboard.component';
 
-import {TopNavComponent} from '../shared/index';
-import {SidebarComponent} from '../shared/index';
+import { TopNavComponent } from '../shared/index';
+import { SidebarComponent } from '../shared/index';
 
 
 @NgModule({
-    imports: [
-      MassUpdateNewRequestModule,
-      
-        CommonModule,
-      RouterModule,
-      DropdownModule,
-      HomeModule,
-        ChartModule,
-        TableModule,
-        FormModule,
-        GridModule,
-      BSComponentModule,
-        BSElementModule,
-        BlankPageModule
-    ],
-    declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
-    exports: [DashboardComponent, TopNavComponent, SidebarComponent]
+  imports: [
+    MassUpdateNewRequestModule,
+    CommonModule,
+    RouterModule,
+    DropdownModule,
+    HomeModule,
+    ChartModule,
+    TableModule,
+    FormModule,
+    GridModule,
+    BSComponentModule,
+    BSElementModule,
+    BlankPageModule
+  ],
+  declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
+  exports: [DashboardComponent, TopNavComponent, SidebarComponent]
 })
 
 export class DashboardModule { }
