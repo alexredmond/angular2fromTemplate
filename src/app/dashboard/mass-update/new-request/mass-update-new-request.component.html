@@ -7,60 +7,128 @@
 	</div>
 
 
-<div class="row">
-		<div class="col-lg-9">
+	<div class="row">
+		<form (ngSubmit)="onSubmit()" #massUpdateNewRequestForm="ngForm" class="form-inline">
 
-			<form (ngSubmit)="onSubmit()" #massUpdateNewRequestForm="ngForm">
 
-				<div class="form-group">
-					<label for ="changeTypeCodes">Mass Update Type</label> 
-					<select [(ngModel)]="model.changeTypeCode" (ngModelChange)="onChangemassUpdateType($event)" name="changeTypeCode" class="form-control" required>
+
+			<div class="row">
+
+				<fieldset class="form-group col-lg-6">
+					<label for="changeTypeCodes" class="form-control-label col-lg-3">Mass Update Type</label>
+					<select [(ngModel)]="model.changeTypeCode" (ngModelChange)="onChangemassUpdateType($event)" name="changeTypeCode" class="form-control col-lg-9"
+						required>
 						<option value="">Select One</option>
-						<option [ngValue]="massUpdateTypeElement.code" *ngFor="let massUpdateTypeElement of massUpdateTypes">{{massUpdateTypeElement.description}}</option>
+						<option [ngValue]="massUpdateTypeElement.code" *ngFor="let massUpdateTypeElement of massUpdateTypeOptions">{{massUpdateTypeElement.description}}</option>
 					</select> {{selectedMassUpdateType | json}}
+				</fieldset>
+				<fieldset class="form-group col-lg-6">
+					<label for="changeTypeCode" class="form-control-label col-lg-3">Code</label>
+					<input type="text" class="form-control col-lg-9" name="changeTypeCode" [(ngModel)]="model.changeTypeCode" placeholder=""
+						disabled required />				
+				</fieldset>
+
+			</div>
+
+			<div class="row">
+
+				<fieldset class="form-group col-lg-6">
+					<label for="referenceNumber" class="form-control-label col-lg-3">SDT / Project reference number</label>
+					<input type="text" class="form-control col-lg-9" name="referenceNumber" [(ngModel)]="model.referenceNumber" placeholder="sdt12345"
+					/>
+				</fieldset>
+				<fieldset class="form-group col-lg-6">
+					<label for="requestorUsername" class="form-control-label col-lg-3">Requestor Username</label>
+					<input type="text" class="form-control col-lg-9" name="requestorUsername" [(ngModel)]="model.requestorUsername" placeholder="current username"
+						disabled required />
+				</fieldset>
+
+			</div>
+			<div class="row">
+				<fieldset class="form-group col-lg-6">
+					<label for="midGroup" class="form-control-label col-lg-3">Mid Group / Processing Centre</label>
+					<select [(ngModel)]="model.midGroup" name="midGroup" class="form-control col-lg-9" required>
+						<option [ngValue]="midGroupOption.code" *ngFor="let midGroupOption of midGroupOptions" >{{midGroupOption.description}}</option>
+					</select>
+				</fieldset>
+
+				<fieldset class="form-group col-lg-6">
+					<label for="approverUsernames" class="form-control-label col-lg-3">Approver Usernames</label>
+					<input type="text" class="form-control col-lg-9" name="approverUsernames" [(ngModel)]="model.approverUsernames" placeholder="coma separated usernames"
+					/>
+				</fieldset>
+			</div>
+			<div class="row">
+				<fieldset class="form-group col-lg-6">
+					<label for="notificationEmails" class="form-control-label col-lg-3">Notification Emails</label>
+					<input type="text" class="form-control col-lg-9" name="notificationEmails" [(ngModel)]="model.notificationEmails" placeholder="coma separated email addresses"
+					/>
+				</fieldset>
+			</div>
+			<br/>
+			<div style=" background-color: lightblue;">
+
+				<div class="row">
+					<fieldset class="form-group col-lg-12">
+						<b>{{infoText}}</b>
+					</fieldset>
 				</div>
 
 
+				<div class="row" *ngIf="field1code">
+					<fieldset class="form-group col-lg-12">
+						<label for="field1" class="form-control-label col-lg-3">Field 1</label>
+						<input type="text" class="form-control col-lg-9" name="field1" [(ngModel)]="model.field1" placeholder="{{field1placeholder}}"
+						/>
+					</fieldset>
+				</div>
 
-				<fieldset class="form-group">
-					<label for="requestorUsername">Requestor Username</label> 
-					<input type="text" class="form-control" name="requestorUsername" [(ngModel)]="model.requestorUsername"  placeholder="current username" disabled required />
+				<div class="row" *ngIf="field2code">
+					<fieldset class="form-group col-lg-12">
+						<label for="field2" class="form-control-label col-lg-3">Field 2</label>
+						<input type="text" class="form-control col-lg-9" name="field2" [(ngModel)]="model.field2" placeholder="{{field2placeholder}}"
+						/>
+					</fieldset>
+				</div>
+				<div class="row" *ngIf="field3code">
+					<fieldset class="form-group col-lg-12">
+						<label for="field3" class="form-control-label col-lg-3">Field 3</label>
+						<input type="text" class="form-control col-lg-9" name="field3" [(ngModel)]="model.field3" placeholder="{{field3placeholder}}"
+						/>
+					</fieldset>
+				</div>
+				<div class="row" *ngIf="field4code">
+					<fieldset class="form-group col-lg-12">
+						<label for="field4" class="form-control-label col-lg-3">Field 4</label>
+						<input type="text" class="form-control col-lg-9" name="field4" [(ngModel)]="model.field4" placeholder="{{field4placeholder}}"
+						/>
+					</fieldset>
+				</div>
+				<div class="row" *ngIf="field5code">
+					<fieldset class="form-group col-lg-12">
+						<label for="field5" class="form-control-label col-lg-3">Field 5</label>
+						<input type="text" class="form-control col-lg-9" name="field5" [(ngModel)]="model.field5" placeholder="{{field5placeholder}}"
+						/>
+					</fieldset>
+				</div>
+				<br/>
+			</div>
+			<br/>
+
+			<div class="row">
+				<fieldset class="form-group col-lg-6">
+					<label for="midList" class="form-control-label col-lg-3">Mid List</label>
+					<textarea class="form-control col-lg-9" rows="50" name="midList" [(ngModel)]="model.midList" placeholder="new line separated"></textarea>
 				</fieldset>
-				<fieldset class="form-group">
-					<label for="referenceNumber">SDT / Project reference number</label> 
-					<input type="text" class="form-control" name="referenceNumber" [(ngModel)]="model.referenceNumber" placeholder="sdt12345" />
+				<fieldset class="form-group col-lg-6">
+					<button type="button" class="btn btn-secondary btn-sm" (click)="defaultForm()" style="float: right;">Reset</button>
+					<button type="submit" class="btn btn-primary btn-sm" style="float: right;">Submit</button>
 				</fieldset>
-				<fieldset class="form-group">
-					<label for ="midGroup">Mid Group / Processing Centre</label> 
-					<select [(ngModel)]="model.midGroup"  name="midGroup" class="form-control" required>
-						<option [ngValue]="midGroupOption.code" *ngFor="let midGroupOption of midGroupOptions" >{{midGroupOption.description}}</option>
-					</select> 
-				</fieldset>
-				
-				<fieldset class="form-group">
-					<label for="approverUsernames">Approver Usernames</label> 
-					<input type="text" class="form-control" name="approverUsernames" [(ngModel)]="model.approverUsernames" placeholder="coma separated usernames" />
-				</fieldset>
-
-				<fieldset class="form-group">
-					<label for="notificationEmails">Notification Emails</label> 
-					<input type="text" class="form-control" name="notificationEmails" [(ngModel)]="model.notificationEmails" placeholder="coma separated email addresses" />
-				</fieldset>
+			</div>
 
 
-
-				<button type="submit" class="btn btn-secondary">Submit Button</button>
-				<button type="reset" class="btn btn-secondary">Reset Button</button>
-
-
-
-
-
-
-			</form>
-
-		</div>
-</div>
+		</form>
+	</div>
 
 
 </div>

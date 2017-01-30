@@ -1,75 +1,70 @@
-
-
-
 <div class="container-fluid">
 	<!-- Page Heading -->
 	<div class="row">
 		<div class="col-lg-12">
-			<h2 class="page-header">Mass Update Report </h2>
+			<h2 class="page-header">Mass Update Report Search </h2>
+			<br/>
 		</div>
 	</div>
 
 
+	<form (ngSubmit)="onSubmit2()" #massUpdateReportSearchRequestForm="ngForm" class="form-inline">
+		<div class="row">
+			<fieldset class="form-group col-lg-6">
+				<label for="dateFrom" class="form-control-label col-lg-3">Date From</label>
+				<input type="text" class="form-control col-lg-9 " name="dateFrom" #dateFrom="ngModel" [(ngModel)]="model.dateFrom" placeholder="2016-12-31"
+				/>
+			</fieldset>
+			<fieldset class="form-group col-lg-6">
+				<label for="dateTo" class="form-control-label col-lg-3">Date To</label>
+				<input type="text" class="form-control col-lg-9" name="dateTo" #dateTo="ngModel" [(ngModel)]="model.dateTo  " placeholder="2018-01-01"
+				/>
+			</fieldset>
+		</div>
+		<div class="row">
+			<fieldset class="form-group col-lg-6">
+				<label for="requestId" class="form-control-label col-lg-3">Request Id</label>
+				<input type="text" class="form-control  col-lg-9" name="requestId" #requestId="ngModel" [(ngModel)]="model.requestId" placeholder="12345"
+				/>
+			</fieldset>
+			<fieldset class="form-group col-lg-6">
+				<label for="requestorUsername" class="form-control-label col-lg-3">Requestor Username</label>
+				<input type="text" class="form-control  col-lg-9" name="requestorUsername" #requestorUsername="ngModel" [(ngModel)]="model.requestorUsername"
+					placeholder="jxsmith" />
+			</fieldset>
 
-<div class="row">
-		<div class="col-lg-9">
-
-			<form (ngSubmit)="onSubmit()" #massUpdateReportSearchRequestForm="ngForm">
-
-				<fieldset class="form-group">
-					<label for="dateFrom">Date From</label> 
-					<input type="text" class="form-control" name="dateFrom" #dateFrom="ngModel" [(ngModel)]="model.dateFrom"  placeholder="2016-12-31" /> 
-				</fieldset>
-				
-				<fieldset class="form-group">
-					<label for="dateTo">Date To</label> 
-					<input type="text" class="form-control"  name="dateTo" #dateTo="ngModel" [(ngModel)]="model.dateTo  "  placeholder="2018-01-01" /> 
-				</fieldset>
-			
-
-				<fieldset class="form-group">
-					<label for="requestId">Request Id</label> 
-					<input type="text" class="form-control" name="requestId" #requestId="ngModel" [(ngModel)]="model.requestId"  placeholder="12345" /> 
-				</fieldset>
-
-				<div class="form-group">
-					<label for ="changeTypeCode">Mass Update Type</label> 
-					<select [(ngModel)]="model.changeTypeCode"  name="changeTypeCode" class="form-control" >
+		</div>
+		<div class="row">
+			<fieldset class="form-group col-lg-6">
+				<label for="changeTypeCode" class="form-control-label col-lg-3">Mass Update Type</label>
+				<select [(ngModel)]="model.changeTypeCode" name="changeTypeCode" class="form-control  col-lg-9">
 						<option value="">Select One</option>
 						<option [ngValue]="massUpdateTypeElement.code" *ngFor="let massUpdateTypeElement of massUpdateTypeOptions">{{massUpdateTypeElement.description}}</option>
 					</select>
-				</div>
-
-				<fieldset class="form-group">
-					<label for="requestorUsername">Requestor Username</label> 
-					<input type="text" class="form-control" name="requestorUsername" #requestorUsername="ngModel" [(ngModel)]="model.requestorUsername"  placeholder="jxsmith" /> 
-				</fieldset>
-				<fieldset class="form-group">
-					<label for="referenceNumber">SDT / Project reference number</label> 
-					<input type="text" class="form-control" name="referenceNumber"  #referenceNumber="ngModel"  [(ngModel)]="model.referenceNumber" placeholder="sdt12345" />
-				</fieldset>
-
-				<div class="form-group">
-					<label for ="statusCode">Request Status</label> 
-					<select [(ngModel)]="model.statusCode"  name="statusCode" class="form-control" >
-						<option value="">Select One</option>
-					</select>
-				</div>
+			</fieldset>
+			<fieldset class="form-group col-lg-6">
+				<label for="referenceNumber" class="form-control-label col-lg-3">SDT / Project reference number</label>
+				<input type="text" class="form-control  col-lg-9" name="referenceNumber" #referenceNumber="ngModel" [(ngModel)]="model.referenceNumber"
+					placeholder="sdt12345" />
+			</fieldset>
 
 
-
-				<button type="submit" class="btn btn-secondary">Submit Button</button>
-				<button type="reset" class="btn btn-secondary">Reset Button</button>
-
-
-
-
-
-
-			</form>
 
 		</div>
+
+		<div class="row">
+			<fieldset class="form-group col-lg-6">
+			</fieldset>
+			<fieldset class="form-group col-lg-6">
+				<button type="button" class="btn btn-secondary btn-sm" (click)="defaultForm()" style="float: right;">Reset</button>
+				<button type="submit" class="btn btn-primary btn-sm" style="float: right;">Search</button>
+			</fieldset>
+		</div>
+
+
+
+</form>
 </div>
 
 
-</div>
+<mass-update-report-result-list [resultList]="resultList" [resultCount]="resultCount"></mass-update-report-result-list>

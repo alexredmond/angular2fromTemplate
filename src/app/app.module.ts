@@ -10,9 +10,14 @@ import { LoginModule } from './login/login.module';
 import { SignupModule } from './signup/signup.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 
+import { AlertModule } from './shared/alert/alert.module';
+import {AuthorizationGuard} from './login/authorization.guard';
+
+
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent   
   ],
   imports: [
     BrowserModule,
@@ -20,10 +25,14 @@ import { DashboardModule } from './dashboard/dashboard.module';
     HttpModule,
     RouterModule.forRoot(routes),
     LoginModule,
+    AlertModule,
     SignupModule,
     DashboardModule
   ],
-  providers: [],
+  exports: [
+    
+  ],
+  providers: [AuthorizationGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

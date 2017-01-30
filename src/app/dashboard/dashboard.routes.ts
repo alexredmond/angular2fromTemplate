@@ -9,9 +9,10 @@ import { GridRoutes } from './grid/grid.routes';
 import { BSComponentRoutes } from './bs-component/bsComponent.routes';
 import { BSElementRoutes } from './bs-element/bsElement.routes';
 
-import { MassUpdateNewRequestRoutes } from './mass-update/massUpdateNewRequest.routes';
+import { MassUpdateNewRequestRoutes } from './mass-update/massUpdateNewRequest.routes'; 
 
 import { DashboardComponent } from './index';
+import { AuthorizationGuard } from '../login/authorization.guard'; 
 
 export const DashboardRoutes: Route[] = [
     {
@@ -27,6 +28,8 @@ export const DashboardRoutes: Route[] = [
         ...FormRoutes,
         ...GridRoutes,
         ...BSElementRoutes
-      ]
+      ],
+      canActivate: [AuthorizationGuard] 
     }
+    
 ];

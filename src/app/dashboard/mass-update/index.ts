@@ -3,5 +3,6 @@
  */
 export * from './new-request/massUpdateNewRequest.component';
 export * from './report-search/massUpdateReportSearchRequest.component';
+export * from './report-detail/massUpdateReportDetail.component'; 
 export * from './massUpdateNewRequest.routes';
-
+ 

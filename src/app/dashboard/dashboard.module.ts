@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { DropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { HomeModule } from './home/home.module';
@@ -19,10 +19,15 @@ import { DashboardComponent } from './dashboard.component';
 import { TopNavComponent } from '../shared/index';
 import { SidebarComponent } from '../shared/index';
 
+import { AlertModule } from '../shared/alert/alert.module';
+
+
+
 
 @NgModule({
   imports: [
     MassUpdateNewRequestModule,
+
     CommonModule,
     RouterModule,
     DropdownModule,
@@ -33,10 +38,12 @@ import { SidebarComponent } from '../shared/index';
     GridModule,
     BSComponentModule,
     BSElementModule,
-    BlankPageModule
+    BlankPageModule,
+    AlertModule,
+    RouterModule
   ],
   declarations: [DashboardComponent, TopNavComponent, SidebarComponent],
-  exports: [DashboardComponent, TopNavComponent, SidebarComponent]
+  exports: [DashboardComponent, TopNavComponent, SidebarComponent, RouterModule]
 })
 
 export class DashboardModule { }

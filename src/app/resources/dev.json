@@ -1,5 +1,5 @@
 {
- "apiUrl”": "/src/",
- "debugging": true,
- "himmsServer": "http://pccwd-987f302:9080/MerchantServices/rest/"
+        "apiUrl": "/src/",
+        "debugging": "true",
+        "himmsServer": "http://pccwd-987f302:9080/MerchantServices/rest/"
 }

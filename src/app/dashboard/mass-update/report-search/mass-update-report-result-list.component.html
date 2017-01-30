@@ -1,0 +1,46 @@
+<div *ngIf="resultList">
+	<div class="col-xl-12 col-lg-12">
+		<br/>
+
+		<div class="card card-block  card-inverse">
+			<div class="card-header card-primary ">Results: {{resultCount}}</div>
+			<div class="table-responsive">
+				<table class="table table-hover table-striped  table-sm ">
+					<thead>
+						<tr>
+							<th>Request Id</th>
+							<th>Change Type</th>
+							<th>Status</th>
+							<th>Requestor</th>
+							<th>Created Date</th>
+							<th>Approved By</th>
+							<th>Reference Number</th>
+							<th>Mid Count</th>
+							<th>Comment</th>
+							<th>Message</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let record of resultList">
+
+
+
+							<td><a  class="btn btn-sm btn-link" [routerLink]="['/dashboard/massupdate/report', record.requestId]" [routerLinkActive]="['router-link-active']">{{record.requestId}}</a></td>
+							<td>{{record.changeTypeCode}}</td>
+							<td>{{record.statusCode}}</td>
+							<td>{{record.requestorUsername}}</td>
+							<td>{{record.createdTs}}</td>
+							<td>{{record.approvedBy}}</td>
+							<td>{{record.referenceNumber}}</td>
+							<td>{{record.midCount}}</td>
+							<td>{{record.commentText}}</td>
+							<td>{{record.messageText}}</td>
+						</tr>
+
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

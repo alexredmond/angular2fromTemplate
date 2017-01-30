@@ -8,52 +8,34 @@ import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 
 import { MassUpdateReportSearchRequest } from './report-search/massUpdateReportSearchRequest';
-import { Config } from "../../resources/config";
+import { MassUpdateReportSearchResponse } from './report-search/massUpdateReportSearchResponse';
+import { MassUpdateReportDetail } from './report-detail/massUpdateReportDetail';
+import { Config } from '../../shared/properties/config';
+import { UtilService } from '../../shared/utils/util.service'; 
 
 @Injectable()
 export class MassUpdateService {
-  private _serverUrl = 'http://pccwd-987f302:9080/MerchantServices/rest/massUpdate/search';
 
-  constructor(private _http: Http, private _config: Config) {
-
-
+  constructor(private _http: Http, private _config: Config, private _utilService: UtilService) {
   }
 
-  //    getProducts(): Observable<IProduct[]> {
-  //        return this._http.get(this._productUrl)
-  //            .map((response: Response) => <IProduct[]> response.json())
-  //            .do(data => console.log('All: ' +  JSON.stringify(data)))
-  //            .catch(this.handleError);
-  //    }
-  //
-  //    getProduct(id: number): Observable<IProduct> {
-  //        return this.getProducts()
-  //            .map((products: IProduct[]) => products.find(p => p.productId === id));
-  //    }
-  //
 
-  massUpdateSearchRequest(massUpdateReportSearchRequest: MassUpdateReportSearchRequest): Observable<MassUpdateReportSearchRequest> {
-
-
-    let url = this._config.get('himmsServer');
-    console.log('himmsServerrrrrrrrrrrrrrrrrrrr ');
-
-
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Access-Control-Allow-Origin', '*');
-    headers.append('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
-    headers.append('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token');
-
-
-
-
-    let options = new RequestOptions({ headers: headers });
+  massUpdateSearchRequest(massUpdateReportSearchRequest: MassUpdateReportSearchRequest): Observable<MassUpdateReportSearchResponse> {
     let body = JSON.stringify(massUpdateReportSearchRequest);
-     console.log('bodyyyyyyyyyy ' + body);
-    
+    console.log('bodyyyyyyyyyy ' + body);    
+    let options =  this._utilService.buildRestHeaders();
 
-    return this._http.post(this._serverUrl, body, options)
+    return this._http.post( this._utilService.getRestUrl()+"massUpdate/search", body, options)
+      .map((res: Response) => res.json())
+      .catch(this.handleError);
+  }
+
+  massUpdateReportDetails(requestId: string): Observable<MassUpdateReportDetail> {
+
+    console.log('rrrrrrrrrrrrrr' + requestId);
+
+    let options =  this._utilService.buildRestHeaders();
+    return this._http.get( this._utilService.getRestUrl()+"massUpdate/searchRequestDetails/"+requestId,  options)
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }
@@ -63,9 +45,8 @@ export class MassUpdateService {
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console
     console.error(error);
-    return Observable.throw(error.json().error || 'Server error');
+    return Observable.throw(error.status +' '+error.statusText || 'Server error');
   }
-
 
 
 

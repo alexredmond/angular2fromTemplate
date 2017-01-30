@@ -6,7 +6,7 @@ export class MassUpdateReportSearchRequest {
   changeTypeCode: string;  
   referenceNumber: string;
   statusCode: string;
-
+  messages: string[];
 
 
   constructor( ) {

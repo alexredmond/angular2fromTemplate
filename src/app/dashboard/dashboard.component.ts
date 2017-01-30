@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,  OnInit } from '@angular/core';
+import { Config } from "../shared/properties/config";
 
 /**
 *  This class represents the lazy loaded DashboardComponent.
@@ -9,4 +10,13 @@ import { Component } from '@angular/core';
   templateUrl: 'dashboard.component.html'
 })
 
-export class DashboardComponent { }
+export class DashboardComponent implements OnInit {
+
+    constructor( private _config: Config) {  }
+
+  ngOnInit() {
+     this._config.loadConfiguration();
+
+  }
+
+ }

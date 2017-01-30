@@ -1,0 +1,5 @@
+{
+        "apiUrl": "/src/",
+        "debugging": "true",
+        "himmsServer": "http://localhost:3000/MerchantServices/rest/"
+}
