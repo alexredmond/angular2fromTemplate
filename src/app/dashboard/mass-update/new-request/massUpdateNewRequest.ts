@@ -13,8 +13,7 @@ export class MassUpdateNewRequest {
   field5: string;
 
 
-  constructor( changeTypeCode: string, requestorUsername: string ) {
-    this.changeTypeCode = changeTypeCode;
+  constructor( requestorUsername: string ) {
     this.requestorUsername = requestorUsername;
    }
 }

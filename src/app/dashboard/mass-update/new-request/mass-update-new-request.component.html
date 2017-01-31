@@ -20,7 +20,8 @@
 						required>
 						<option value="">Select One</option>
 						<option [ngValue]="massUpdateTypeElement.code" *ngFor="let massUpdateTypeElement of massUpdateTypeOptions">{{massUpdateTypeElement.description}}</option>
-					</select> {{selectedMassUpdateType | json}}
+					</select>
+					 <!--{{selectedMassUpdateType | json}}-->
 				</fieldset>
 				<fieldset class="form-group col-lg-6">
 					<label for="changeTypeCode" class="form-control-label col-lg-3">Code</label>
@@ -29,7 +30,7 @@
 				</fieldset>
 
 			</div>
-
+<div *ngIf="model.changeTypeCode">
 			<div class="row">
 
 				<fieldset class="form-group col-lg-6">
@@ -125,7 +126,7 @@
 					<button type="submit" class="btn btn-primary btn-sm" style="float: right;">Submit</button>
 				</fieldset>
 			</div>
-
+</div>
 
 		</form>
 	</div>

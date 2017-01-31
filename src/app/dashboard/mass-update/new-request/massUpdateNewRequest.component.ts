@@ -43,6 +43,39 @@ export class MassUpdateNewRequestComponent implements OnInit {
 
 
 
+    ngOnInit() {
+        this.model = new MassUpdateNewRequest(localStorage.getItem('currentUserName'));
+        this.defaultForm();
+
+        this._lookupService.getLookup('T5_MASS_UPD_TYP')
+            .subscribe(options => this.massUpdateTypeOptions = options,
+            error => this.errorMessage = <any>error);
+
+        this._lookupService.getLookup('T5_PRCS_CNTR')
+            .subscribe(options => this.midGroupOptions = options,
+            error => this.errorMessage = <any>error);
+    }
+
+    defaultForm() {
+        this.model.changeTypeCode = '';
+        this.model.referenceNumber = '';
+        this.model.midGroup = 'EU';
+        this.model.approverUsernames = '';
+        this.model.notificationEmails = '';
+        this.model.midList = '';
+        this.field1placeholder = '';
+        this.field2placeholder = '';
+        this.field3placeholder = '';
+        this.field4placeholder = '';
+        this.field5placeholder = '';
+        this.infoText = '';
+        this.model.field1 = '';
+        this.model.field2 = '';
+        this.model.field3 = '';
+        this.model.field4 = '';
+        this.model.field5 = '';
+    }
+
     onChangemassUpdateType(massUpdateTypeCode) {
         console.log(massUpdateTypeCode);
         this.selectedMassUpdateType = this._lookupService.getLookupByCode(this.massUpdateTypeOptions, massUpdateTypeCode);
@@ -58,34 +91,16 @@ export class MassUpdateNewRequestComponent implements OnInit {
         this.field4code = this._lookupService.getLookupAuxColValue(this.selectedMassUpdateType, 'FLD_4_VAL_CDE');
         this.field5code = this._lookupService.getLookupAuxColValue(this.selectedMassUpdateType, 'FLD_5_VAL_CDE');
         this.infoText = this._lookupService.getLookupAuxColValue(this.selectedMassUpdateType, 'INFO_TXT');
-    }
-
-
-    ngOnInit() {
-        this.model = new MassUpdateNewRequest('', localStorage.getItem('currentUserName'));
-        this.model.midGroup = 'EU';
-        this.model.midList = '';
-        this.field1placeholder = '';
-        this.field2placeholder = '';
-        this.field3placeholder = '';
-        this.field4placeholder = '';
-        this.field5placeholder = '';
-        this.infoText = '';
-
-
-        this._lookupService.getLookup('T5_MASS_UPD_TYP')
-            .subscribe(options => this.massUpdateTypeOptions = options,
-            error => this.errorMessage = <any>error);
-
-        this._lookupService.getLookup('T5_PRCS_CNTR')
-            .subscribe(options => this.midGroupOptions = options,
-            error => this.errorMessage = <any>error);
+        this.model.field1 = '';
+        this.model.field2 = '';
+        this.model.field3 = '';
+        this.model.field4 = '';
+        this.model.field5 = '';
     }
 
 
     onSubmit() {
         console.log(this.model);
-
     }
 }
 
