@@ -405,7 +405,7 @@ input[type="checkbox"] {
     // Allow folks to *not* use `.form-group`
     .form-control {
       display: inline-block;
-      width: auto; // Prevent labels from stacking above inputs in `.form-group`
+      width: 70%; // Prevent labels from stacking above inputs in `.form-group`
       vertical-align: middle;
     }
 
